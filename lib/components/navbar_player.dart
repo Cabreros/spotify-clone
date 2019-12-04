@@ -21,6 +21,18 @@ class _BottomPlayerState extends State<BottomPlayer> {
           children: <Widget>[
             GestureDetector(
               onTap: () {
+                Text bar;
+                if (favourited == false) {
+                  bar = Text('Song added to your library.');
+                } else {
+                  bar = Text('Song removed from your library.');
+                }
+                final snackBar = SnackBar(
+                  content: bar,
+                  duration: Duration(seconds: 2),
+                );
+                Scaffold.of(context).showSnackBar(snackBar);
+
                 setState(() {
                   favourited = !favourited;
                 });
