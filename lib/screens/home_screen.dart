@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_clone/components/navbar_player.dart';
 import 'package:spotify_clone/screens/landing_screen.dart';
 import 'package:spotify_clone/screens/library_screen.dart';
 import 'package:spotify_clone/screens/search_screen.dart';
@@ -26,8 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
         physics: NeverScrollableScrollPhysics(),
         children: <Widget>[
           LandingScreen(),
-          LibraryScreen(),
           SearchScreen(),
+          LibraryScreen(),
         ],
         onPageChanged: (int index) {
           setState(() {
@@ -35,38 +36,49 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentTab,
-        onTap: (int index) {
-          setState(() {
-            _currentTab = index;
-          });
-          _pageController.animateToPage(index,
-              duration: Duration(milliseconds: 200), curve: Curves.easeIn);
-        },
-        iconSize: 20,
-        selectedFontSize: 14.0,
-        selectedItemColor: Colors.white,
-        items: [
-          BottomNavigationBarItem(
-            title: Text('Home'),
-            icon: Icon(
-              Icons.home,
+      bottomSheet: BottomPlayer(),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: Colors.black,
             ),
           ),
-          BottomNavigationBarItem(
-            title: Text('Search'),
-            icon: Icon(
-              Icons.search,
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Color(0xff282828),
+          currentIndex: _currentTab,
+          iconSize: 20,
+          selectedFontSize: 14.0,
+          selectedItemColor: Colors.white,
+          onTap: (int index) {
+            setState(() {
+              _currentTab = index;
+            });
+            _pageController.animateToPage(index,
+                duration: Duration(milliseconds: 200), curve: Curves.ease);
+          },
+          items: [
+            BottomNavigationBarItem(
+              title: Text('Home'),
+              icon: Icon(
+                Icons.home,
+              ),
             ),
-          ),
-          BottomNavigationBarItem(
-            title: Text('Your Library'),
-            icon: Icon(
-              Icons.line_weight,
+            BottomNavigationBarItem(
+              title: Text('Search'),
+              icon: Icon(
+                Icons.search,
+              ),
             ),
-          ),
-        ],
+            BottomNavigationBarItem(
+              title: Text('Your Library'),
+              icon: Icon(
+                Icons.line_weight,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

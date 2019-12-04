@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_clone/components/navbar_player.dart';
 
 class LibraryScreen extends StatefulWidget {
   @override
@@ -8,9 +9,12 @@ class LibraryScreen extends StatefulWidget {
 class _LibraryScreenState extends State<LibraryScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('library'),
+    return Scaffold(
+      body: Container(
+        color: Colors.black,
+        child: Center(
+          child: Text('library'),
+        ),
       ),
     );
   }
