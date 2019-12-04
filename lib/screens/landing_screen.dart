@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spotify_clone/components/navbar_player.dart';
 
 class LandingScreen extends StatefulWidget {
   @override

@@ -12,6 +12,7 @@ class _BottomPlayerState extends State<BottomPlayer> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Color(0xff282828),
       height: 60.0,
       child: Padding(
         padding: const EdgeInsets.all(10.0),

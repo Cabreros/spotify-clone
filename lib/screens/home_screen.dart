@@ -22,21 +22,28 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        physics: NeverScrollableScrollPhysics(),
+      body: Stack(
         children: <Widget>[
-          LandingScreen(),
-          SearchScreen(),
-          LibraryScreen(),
+          PageView(
+            controller: _pageController,
+            // physics: NeverScrollableScrollPhysics(),
+            children: <Widget>[
+              LandingScreen(),
+              SearchScreen(),
+              LibraryScreen(),
+            ],
+            onPageChanged: (int index) {
+              setState(() {
+                _currentTab = index;
+              });
+            },
+          ),
+          Container(
+            alignment: Alignment.bottomCenter,
+            child: BottomPlayer(),
+          )
         ],
-        onPageChanged: (int index) {
-          setState(() {
-            _currentTab = index;
-          });
-        },
       ),
-      bottomSheet: BottomPlayer(),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           border: Border(
