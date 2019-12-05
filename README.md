@@ -2,4 +2,4 @@
 
 Work in progress
 
-![](https://i.imgur.com/DjNiqpl.png)
+![](https://i.imgur.com/r2LHAlw.png)
