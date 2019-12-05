@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: <Widget>[
           PageView(
             controller: _pageController,
-            // physics: NeverScrollableScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             children: <Widget>[
               LandingScreen(),
               SearchScreen(),
