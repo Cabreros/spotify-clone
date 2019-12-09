@@ -26,8 +26,7 @@ class _LandingScreenState extends State<LandingScreen> {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(15.0, 10.0, 0, 0),
             child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+              child: ListView(
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -46,16 +45,34 @@ class _LandingScreenState extends State<LandingScreen> {
                     style:
                         TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                   ),
-                  Expanded(
+                  SizedBox(
                     child: PlaylistList(),
+                    height: 265.0,
                   ),
                   Text(
                     'Your heavy rotation',
-                    style:
-                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  Expanded(
+                  SizedBox(
                     child: PlaylistList(),
+                    height: 200.0,
+                  ),
+                  Text(
+                    'Your daily mix',
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    child: PlaylistList(),
+                    height: 200.0,
+                  ),
+                  SizedBox(
+                    height: 60.0,
                   ),
                 ],
               ),
