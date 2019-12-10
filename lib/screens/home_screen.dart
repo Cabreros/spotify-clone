@@ -62,8 +62,9 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() {
               _currentTab = index;
             });
-            _pageController.animateToPage(index,
-                duration: Duration(milliseconds: 200), curve: Curves.ease);
+            // _pageController.animateToPage(index,
+            //     duration: Duration(milliseconds: 200), curve: Curves.ease);
+            _pageController.jumpToPage(index);
           },
           items: [
             BottomNavigationBarItem(
