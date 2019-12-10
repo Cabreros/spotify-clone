@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_clone/components/search_tile.dart';
 
 class SearchField extends StatefulWidget {
   @override
@@ -46,8 +47,8 @@ class _SearchFieldState extends State<SearchField> {
             itemCount: items.length,
             itemBuilder: (BuildContext context, int index) {
               return filter == null || filter == ""
-                  ? new Text(items[index])
-                  : items[index].contains(filter)
+                  ? new SearchTile()
+                  : items[index].toLowerCase().contains(filter.toLowerCase())
                       ? new Text(items[index])
                       : new Container();
             },

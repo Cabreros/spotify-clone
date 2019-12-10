@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spotify_clone/screens/searchfield_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
