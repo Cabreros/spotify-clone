@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_clone/screens/home_screen.dart';
+import 'package:spotify_clone/screens/player_screen.dart';
 import 'package:spotify_clone/screens/searchfield_screen.dart';
 
 void main() => runApp(MyApp());
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => HomeScreen(),
         '/searchfield': (context) => SearchField(),
+        '/playerscreen': (context) => PlayerScreen(),
       },
     );
   }

@@ -42,40 +42,45 @@ class _BottomPlayerState extends State<BottomPlayer> {
                 size: 30.0,
               ),
             ),
-            Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Text(
-                      'Heartless',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14.0,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/playerscreen');
+              },
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        'Heartless',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14.0,
+                        ),
                       ),
-                    ),
-                    Text(' - '),
-                    Text(
-                      'The Weeknd',
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 2.0,
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.cast,
-                      size: 20.0,
-                    ),
-                    Text(
-                      ' Devices Available',
-                      style: TextStyle(fontSize: 15.0),
-                    )
-                  ],
-                )
-              ],
+                      Text(' - '),
+                      Text(
+                        'The Weeknd',
+                        style: TextStyle(fontSize: 15.0),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 2.0,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.cast,
+                        size: 20.0,
+                      ),
+                      Text(
+                        ' Devices Available',
+                        style: TextStyle(fontSize: 15.0),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
             GestureDetector(
               onTap: () {
