@@ -10,21 +10,6 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List list;
-
-  void setGenres() async {
-    Response res = await getGenres();
-    list = jsonDecode(res.body)["genres"];
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    setGenres();
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +27,7 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
           child: Center(
-            child: ListView(
+            child: Column(
               children: <Widget>[
                 SizedBox(
                   height: 100.0,
@@ -83,7 +68,56 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   ),
                 ),
-                Text(list.toString()),
+                FutureBuilder(
+                  future: getGenres(),
+                  builder: (context, snapshot) {
+                    // return Text(snapshot.data.body);
+                    switch (snapshot.connectionState) {
+
+                      ///when the future is null
+                      case ConnectionState.none:
+                        return Text(
+                          'Press the button to fetch data',
+                          textAlign: TextAlign.center,
+                        );
+
+                      case ConnectionState.active:
+                        return Text('eskete');
+
+                      ///when data is being fetched
+                      case ConnectionState.waiting:
+                        return CircularProgressIndicator(
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.blue));
+
+                      case ConnectionState.done:
+                        List genres = jsonDecode(snapshot.data.body)['genres'];
+
+                        ///task is complete with an error (eg. When you
+                        ///are offline)
+                        if (snapshot.hasError)
+                          return Text(
+                            'Error:\n\n${snapshot.error}',
+                            textAlign: TextAlign.center,
+                          );
+
+                        ///task is complete with some data
+                        return Expanded(
+                          child: GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2),
+                            itemBuilder: (context, index) {
+                              return GridTile(
+                                child: Text(genres[index]),
+                              );
+                            },
+                            itemCount: genres.length,
+                          ),
+                        );
+                    }
+                  },
+                ),
               ],
             ),
           ),

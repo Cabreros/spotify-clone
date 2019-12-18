@@ -4,7 +4,7 @@ import 'api_keys.dart';
 
 String API_KEY = secretKey;
 
-Future getGenres() async {
+Future<http.Response> getGenres() async {
   try {
     var _baseURL =
         'https://api.spotify.com/v1/recommendations/available-genre-seeds';
@@ -15,7 +15,7 @@ Future getGenres() async {
       'Authorization': API_KEY
     };
 
-    var response = http.get(_baseURL, headers: headers);
+    final response = http.get(_baseURL, headers: headers);
     var data = response;
     return data;
   } catch (e) {
