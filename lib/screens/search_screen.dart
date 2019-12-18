@@ -22,6 +22,7 @@ class _SearchScreenState extends State<SearchScreen> {
     // TODO: implement initState
     super.initState();
     setGenres();
+    setState(() {});
   }
 
   @override
