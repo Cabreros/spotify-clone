@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:spotify_clone/services/genre_api.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -6,6 +10,20 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  List list;
+
+  void setGenres() async {
+    Response res = await getGenres();
+    list = jsonDecode(res.body)["genres"];
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setGenres();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +82,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   ),
                 ),
+                Text(list.toString()),
               ],
             ),
           ),
