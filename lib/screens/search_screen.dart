@@ -1,7 +1,7 @@
 import 'dart:convert';
-
+import 'dart:math';
+import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:spotify_clone/services/genre_api.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -92,6 +92,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
                       case ConnectionState.done:
                         List genres = jsonDecode(snapshot.data.body)['genres'];
+                        List<Widget> genreWidgets = [];
 
                         ///task is complete with an error (eg. When you
                         ///are offline)
@@ -100,21 +101,40 @@ class _SearchScreenState extends State<SearchScreen> {
                             'Error:\n\n${snapshot.error}',
                             textAlign: TextAlign.center,
                           );
+                        else {
+                          for (String genre in genres) {
+                            genreWidgets.add(
+                              Container(
+                                padding: EdgeInsets.all(10.0),
+                                child: Text(
+                                  StringUtils.capitalize(genre),
+                                  style: TextStyle(
+                                      fontSize: 19.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                height: 50.0,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5.0)),
+                                  color: Colors.primaries[Random()
+                                      .nextInt(Colors.primaries.length)],
+                                ),
+                              ),
+                            );
+                          }
 
-                        ///task is complete with some data
-                        return Expanded(
-                          child: GridView.builder(
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2),
-                            itemBuilder: (context, index) {
-                              return GridTile(
-                                child: Text(genres[index]),
-                              );
-                            },
-                            itemCount: genres.length,
-                          ),
-                        );
+                          ///task is complete with some data
+                          return Expanded(
+                            child: GridView.count(
+                              padding: EdgeInsets.all(12.0),
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 12.0,
+                              mainAxisSpacing: 12.0,
+                              children: genreWidgets,
+                              childAspectRatio: 1.6,
+                            ),
+                          );
+                        }
                     }
                   },
                 ),
