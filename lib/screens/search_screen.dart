@@ -101,7 +101,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             'Error:\n\n${snapshot.error}',
                             textAlign: TextAlign.center,
                           );
-                        else {
+                        if (genres != null) {
                           for (String genre in genres) {
                             genreWidgets.add(
                               Container(
@@ -132,6 +132,18 @@ class _SearchScreenState extends State<SearchScreen> {
                               mainAxisSpacing: 12.0,
                               children: genreWidgets,
                               childAspectRatio: 1.6,
+                            ),
+                          );
+                        } else {
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('Could not load data'),
+                                CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.blue)),
+                              ],
                             ),
                           );
                         }
