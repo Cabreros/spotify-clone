@@ -141,8 +141,9 @@ class _SearchScreenState extends State<SearchScreen> {
                               children: <Widget>[
                                 Text('Could not load data'),
                                 CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                        Colors.blue)),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.blue),
+                                ),
                               ],
                             ),
                           );
